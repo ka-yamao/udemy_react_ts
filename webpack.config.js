@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const publidDir = path.join(__dirname, '/public');
 module.exports = [
   {
-    entry: ['./src/index.jsx'],
+    entry: ['./src/index.tsx'],
     output: {
       path: publidDir,
       publicPath: '/',
@@ -15,15 +15,16 @@ module.exports = [
       rules: [
         {
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: 'awesome-typescript-loader',
           query: {
             presets: ['react', 'es2015']
           }
-        }
+        },
+        { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
       ]
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.ts', '.tsx', '.js', '.json']
     },
     devServer: {
       historyApiFallback: true,

@@ -1,20 +1,30 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+
 import Greeting from './greeting';
 
 
-class App extends Component {
-  constructor(props) {
+interface HelloProps {
+  name: string;
+}
+interface  HelloState {
+  name: string;
+}
+
+
+class App extends React.Component<HelloProps, HelloState> {
+  constructor(props: HelloProps) {
     super(props);
     this.state = {
-      name: 'John',
+      name: props.name
     };
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
 
-  handleNameChange(name) {
+  handleNameChange(name: string): void {
     this.setState({ name });
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div>
         <input type="text" value={this.state.name} onChange={e => this.handleNameChange(e.target.value)} />
