@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Greeting(props) {
-  return (<div>Hi {props.name}</div>);
+  return (
+    <div>
+      Hi {props.name}
+    </div>
+  );
 }
 
 Greeting.propTypes = {
