@@ -1,22 +1,28 @@
 import React from 'react';
-import axios from 'axios';
+
 import SearchForm from './SearchForm';
 import GeocodeResult from './GeocodeResult';
 import Map from './Map';
-
-const GEOCODE_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json';
+import { geocode } from '../domain/Geocoder';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      location: {
+        lat: 35.6585805,
+        lng: 139.7454329,
+      },
+    };
   }
 
   setErrorMessage(message) {
     this.setState({
       address: message,
-      lat: 0,
-      lng: 0,
+      location: {
+        lat: 0,
+        lng: 0,
+      },
     });
   }
 
@@ -24,23 +30,13 @@ class App extends React.Component {
     this.setState({ name });
   }
   handlePlaceSubmit(place) {
-    axios
-      .get(GEOCODE_ENDPOINT, {
-        params: {
-          address: place,
-          key: 'APIキーを取得して設定する',
-        },
-      })
-      .then(results => {
-        const data = results.data;
-        const result = data.results[0];
-        switch (data.status) {
+    geocode(place)
+      .then(({ status, address, location }) => {
+        switch (status) {
           case 'OK': {
-            const location = result.geometry.location;
             this.setState({
-              address: result.formatted_address,
-              lat: location.lat,
-              lng: location.lng,
+              address,
+              location,
             });
             break;
           }
@@ -65,10 +61,9 @@ class App extends React.Component {
         <SearchForm onSubmit={place => this.handlePlaceSubmit(place)} />
         <GeocodeResult
           address={this.state.address}
-          lat={this.state.lat}
-          lng={this.state.lng}
+          location={this.state.location}
         />
-        <Map lat={this.state.lat} lng={this.state.lng} />
+        <Map location={this.state.location} />
       </div>
     );
   }

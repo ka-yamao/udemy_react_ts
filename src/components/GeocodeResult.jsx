@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GeocodeResulet = ({ address, lat, lng }) => (
+const GeocodeResulet = ({ address, location }) => (
   <ul className="geocode-result">
     <li>
       住所：
@@ -9,19 +9,18 @@ const GeocodeResulet = ({ address, lat, lng }) => (
     </li>
     <li>
       緯度：
-      {lat}
+      {location.lat}
     </li>
     <li>
       軽度：
-      {lng}
+      {location.lng}
     </li>
   </ul>
 );
 
 GeocodeResulet.propTypes = {
   address: PropTypes.string,
-  lat: PropTypes.number,
-  lng: PropTypes.number,
+  location: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 
 export default GeocodeResulet;
