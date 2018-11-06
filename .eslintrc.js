@@ -2,6 +2,8 @@ module.exports = {
   extends: 'airbnb',
   env: {
     browser: true,
+    node: true,
+    amd: true,
   },
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
 
