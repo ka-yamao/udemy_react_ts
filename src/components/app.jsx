@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import SearchForm from './SearchForm';
 import GeocodeResult from './GeocodeResult';
@@ -6,6 +7,8 @@ import Map from './Map';
 import HotelsTable from './HotelsTable';
 import { geocode } from '../domain/Geocoder';
 import { searchHotelByLocation } from '../domain/HotelRepository';
+
+const sortedHotels = (hotels, sort) => _.sortBy(hotels, h => h[sort]);
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +18,7 @@ class App extends React.Component {
         lat: 35.6585805,
         lng: 139.7454329,
       },
+      sortKey: 'price',
     };
   }
 
@@ -53,7 +57,7 @@ class App extends React.Component {
         return [];
       })
       .then(hotels => {
-        this.setState({ hotels });
+        this.setState({ hotels: sortedHotels(hotels, this.state.sortKey) });
       })
       .catch(() => {
         this.setErrorMessage('通信に失敗しました。');
