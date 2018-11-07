@@ -5,6 +5,7 @@ import GeocodeResult from './GeocodeResult';
 import Map from './Map';
 import HotelsTable from './HotelsTable';
 import { geocode } from '../domain/Geocoder';
+import { searchHotelByLocation } from '../domain/HotelRepository';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,10 +15,6 @@ class App extends React.Component {
         lat: 35.6585805,
         lng: 139.7454329,
       },
-      hotels: [
-        { id: '100', name: 'ホテルオークラ', url: 'https://www.google.co.jp' },
-        { id: '110', name: 'アパホテル', url: 'https://www.yahoo.co.jp' },
-      ],
     };
   }
 
@@ -43,7 +40,7 @@ class App extends React.Component {
               address,
               location,
             });
-            break;
+            return searchHotelByLocation(location);
           }
           case 'ZERO_RESULT': {
             this.setErrorMessage('結果が見つかりませんでした。');
@@ -53,6 +50,10 @@ class App extends React.Component {
             this.setErrorMessage('エラーが発生しました。');
           }
         }
+        return [];
+      })
+      .then(hotels => {
+        this.setState({ hotels });
       })
       .catch(() => {
         this.setErrorMessage('通信に失敗しました。');

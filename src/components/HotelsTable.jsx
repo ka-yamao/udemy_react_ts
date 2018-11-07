@@ -19,7 +19,7 @@ HotelsTable.propTypes = {
   hotels: PropTypes.arrayOf(PropTypes.any),
 };
 
-HotelsTable.defaltProps = {
+HotelsTable.defaultProps = {
   hotels: [],
 };
 
