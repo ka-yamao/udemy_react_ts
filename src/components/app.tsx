@@ -1,38 +1,26 @@
 import * as React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import Greeting from './greeting';
+import SearchPage from './SearchPage';
+import AboutPage from './AboutPage';
 
-
-interface HelloProps {
-  name: string;
-}
-interface  HelloState {
-  name: string;
-}
-
-
-class App extends React.Component<HelloProps, HelloState> {
-  constructor(props: HelloProps) {
-    super(props);
-    this.state = {
-      name: props.name
-    };
-    this.handleNameChange = this.handleNameChange.bind(this);
-  }
-
-  handleNameChange(name: string): void {
-    this.setState({ name });
-  }
-
-  render(): JSX.Element {
-    return (
-      <div>
-        <input type="text" value={this.state.name} onChange={e => this.handleNameChange(e.target.value)} />
-        <button onClick={e => this.handleNameChange('')}>Clear</button>
-        <Greeting name={this.state.name} />
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <div className="app">
+      <ul className="left-navi">
+        <li>
+          <Link to="/">ホテル検索</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+      </ul>
+      <Switch>
+        <Route exact path="/" component={SearchPage} />
+        <Route exact path="/about" component={AboutPage} />
+      </Switch>
+    </div>
+  </Router>
+);
 
 export default App;

@@ -4,17 +4,12 @@ import * as PropTypes from 'prop-types';
 //import * as App from './app';
 // import App from './app';
 
-function Greeting(props: any) : any {
-  return (
-    <div>
-      Hi {props.name}
-    </div>
-  );
+function greetingBK(props: any): any {
+  return <div>Hi {props.name}</div>;
 }
 
-Greeting.propTypes = {
+greetingBK.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-
-export default Greeting;
+export default greetingBK;
