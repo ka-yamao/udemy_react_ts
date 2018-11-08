@@ -38,7 +38,7 @@ class SearchPage extends React.Component {
   }
 
   handlePlaceSubmit(place) {
-    this.props.history.push(`/?query${place}`);
+    this.props.history.push(`/?query=${place}`);
     geocode(place)
       .then(({ status, address, location }) => {
         switch (status) {
