@@ -1,7 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import HotelRow from './HotelRow';
-import HotelsClickableTh from './HotelsClickableTh';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as HotelRow from './HotelRow';
+import * as HotelsClickableTh from './HotelsClickableTh';
+
+interface IHotel {
+  id: string;
+  name: string;
+  url: string;
+  thumbUrl: string;
+  price: number;
+  reviewAverage: number;
+  reviewCount: number;
+  distance: number;
+}
+
+interface IHotels {}
 
 const HotelsTable = ({ hotels, sortKey, onSort }) => (
   <table>

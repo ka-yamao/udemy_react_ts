@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
-import queryString from 'query-string';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as _ from 'lodash';
+import * as queryString from 'query-string';
 
 import SearchForm from './SearchForm';
 import GeocodeResult from './GeocodeResult';
@@ -12,8 +12,13 @@ import { searchHotelByLocation } from '../domain/HotelRepository';
 
 const sortedHotels = (hotels, sort) => _.sortBy(hotels, h => h[sort]);
 
-class SearchPage extends React.Component {
-  constructor(props) {
+interface Props {
+  name: string;
+}
+interface State {}
+
+class SearchPage extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       location: {
@@ -125,7 +130,6 @@ class SearchPage extends React.Component {
     );
   }
 }
-
 SearchPage.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   location: PropTypes.shape({ search: PropTypes.string }).isRequired,

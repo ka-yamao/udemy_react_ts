@@ -1,7 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
-const SearchForm = props => (
+interface SearchFormProps {
+  onSubmit: (e: React.FormEvent) => void;
+  onPlaceChange: (value: string) => void;
+  place: string;
+}
+
+const SearchForm = (props: SearchFormProps) => (
   <form className="search-form" onSubmit={e => props.onSubmit(e)}>
     <input
       className="place-input"

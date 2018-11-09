@@ -1,7 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
-const GeocodeResulet = ({ address, location }) => (
+interface GeoLocation {
+  lat: number;
+  lng: number;
+}
+interface GeoResult {
+  address: string;
+  location: GeoLocation;
+}
+
+const GeocodeResulet = ({ address, location }: GeoResult) => (
   <ul className="geocode-result">
     <li>
       住所：
