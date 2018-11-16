@@ -3,7 +3,10 @@ import geolib from 'geolib';
 
 const RAKUTEN_APP_ID = process.env.RAKUTEN_APP_ID;
 
-export const searchHotelByLocation = location => {
+export const searchHotelByLocation = (location: {
+  lat: number;
+  lng: string;
+}) => {
   const params = {
     applicationId: RAKUTEN_APP_ID,
     datumType: 1,
