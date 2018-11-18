@@ -16,6 +16,7 @@ const App = () => (
         </li>
       </ul>
       <Switch>
+        <Route exact path="/" component={SearchPage} />
         <Route exact path="/about" component={AboutPage} />
       </Switch>
     </div>

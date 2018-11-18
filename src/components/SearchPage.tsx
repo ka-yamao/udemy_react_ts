@@ -10,23 +10,41 @@ import HotelsTable from './HotelsTable';
 import { geocode } from '../domain/Geocoder';
 import { searchHotelByLocation } from '../domain/HotelRepository';
 
-const sortedHotels = (hotels, sort) => _.sortBy(hotels, h => h[sort]);
+const sortedHotels: any = (hotels: any[], sort: string) =>
+  _.sortBy(hotels, h => h[sort]);
 
 interface Props {
   name: string;
+  location: {
+    lat: number;
+    lng: number;
+    search: string;
+  };
+  history: any;
 }
-interface State {}
+interface State {
+  address: string;
+  place: string;
+  location: {
+    lat: number;
+    lng: number;
+  };
+  sortKey: string;
+  hotels: [];
+}
 
 class SearchPage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      address: '',
       location: {
         lat: 35.6585805,
         lng: 139.7454329,
       },
       sortKey: 'price',
       place: this.getPlaceParam() || '東京タワー',
+      hotels: [],
     };
   }
 
@@ -37,16 +55,16 @@ class SearchPage extends React.Component<Props, State> {
     }
   }
 
-  getPlaceParam() {
+  getPlaceParam(): string {
     const params = queryString.parse(this.props.location.search);
-    const place = params.place;
+    const place: string = typeof params.place === 'string' ? params.place : '';
     if (place && place.length > 0) {
       return place;
     }
-    return null;
+    return '';
   }
 
-  setErrorMessage(message) {
+  setErrorMessage(message: string) {
     this.setState({
       address: message,
       location: {
@@ -56,19 +74,16 @@ class SearchPage extends React.Component<Props, State> {
     });
   }
 
-  handleNameChange(name) {
-    this.setState({ name });
-  }
-  handlePlaceChange(place) {
+  handlePlaceChange(place: string) {
     this.setState({ place });
   }
 
-  handlePlaceSubmit(e) {
+  handlePlaceSubmit(e: React.FormEvent) {
     e.preventDefault();
     this.props.history.push(`/?place=${this.state.place}`);
     this.startSearch();
   }
-  handleSortKeyChange(sortKey) {
+  handleSortKeyChange(sortKey: string) {
     this.setState({
       sortKey,
       hotels: sortedHotels(this.state.hotels, sortKey),
@@ -109,7 +124,7 @@ class SearchPage extends React.Component<Props, State> {
         <SearchForm
           place={this.state.place}
           onPlaceChange={place => this.handlePlaceChange(place)}
-          onSubmit={e => this.handlePlaceSubmit(e)}
+          onSubmit={(e: React.FormEvent) => this.handlePlaceSubmit(e)}
         />
         <div className="result-area">
           <Map location={this.state.location} />
@@ -122,7 +137,7 @@ class SearchPage extends React.Component<Props, State> {
             <HotelsTable
               hotels={this.state.hotels}
               sortKey={this.state.sortKey}
-              onSort={sortKey => this.handleSortKeyChange(sortKey)}
+              onSort={(sortKey: string) => this.handleSortKeyChange(sortKey)}
             />
           </div>
         </div>
@@ -130,9 +145,5 @@ class SearchPage extends React.Component<Props, State> {
     );
   }
 }
-SearchPage.propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func }).isRequired,
-  location: PropTypes.shape({ search: PropTypes.string }).isRequired,
-};
 
 export default SearchPage;
