@@ -1,33 +1,28 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
-const HotelRow = ({ hotel }) => (
+import { IHotel } from './HotelsTable';
+
+interface OwnProps {
+  hotel: IHotel;
+}
+type Props = OwnProps;
+
+const HotelRow: React.SFC<Props> = props => (
   <tr>
     <td>
-      <img src={hotel.thumbUrl} alt={hotel.name} />
+      <img src={props.hotel.thumbUrl} alt={props.hotel.name} />
     </td>
     <td>
-      <a href={hotel.url} target="_blank">
-        {hotel.name}
+      <a href={props.hotel.url} target="_blank">
+        {props.hotel.name}
       </a>
     </td>
-    <td>{hotel.price ? `${hotel.price}円` : '空室なし'}</td>
-    <td>{hotel.reviewAverage}</td>
-    <td>{hotel.reviewCount}</td>
-    <td>{hotel.distance}</td>
+    <td>{props.hotel.price ? `${props.hotel.price}円` : '空室なし'}</td>
+    <td>{props.hotel.reviewAverage}</td>
+    <td>{props.hotel.reviewCount}</td>
+    <td>{props.hotel.distance}</td>
   </tr>
 );
-
-HotelRow.propTypes = {
-  hotel: PropTypes.shape({
-    name: PropTypes.string,
-    url: PropTypes.string,
-    thumbUrl: PropTypes.string,
-    price: PropTypes.number,
-    reviewAverage: PropTypes.number,
-    reviewCount: PropTypes.number,
-    distance: PropTypes.number,
-  }).isRequired,
-};
 
 export default HotelRow;

@@ -1,25 +1,47 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import { LatLngLiteral } from 'googlemaps';
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from 'react-google-maps';
 
-type Hoge = LatLngLiteral;
+export interface Loco {
+  location: LatLon;
+}
 
-const InnerMap = withGoogleMap((location: Hoge, marker: { position: Hoge }) => (
-  <GoogleMap defaultZoom={12} defaultCenter={location} center={location}>
-    <Marker {...marker} />
-  </GoogleMap>
-));
+type LatLon = {
+  lat: number;
+  lng: number;
+};
+interface LatLngLiteralMark {
+  position: LatLon;
+}
 
-const Map = (location: { lat: number; lng: number }) => (
+export const googleMapURL =
+  'https://maps.googleapis.com/maps/api/js?key=' +
+  process.env.GOOGLE_MAP_API_KEY;
+
+const InnerMap = withScriptjs(
+  withGoogleMap((location: Loco) => (
+    <GoogleMap
+      defaultZoom={12}
+      defaultCenter={location.location}
+      center={location.location}
+    >
+      <Marker position={location.location} />
+    </GoogleMap>
+  ))
+);
+
+const Map = (loco: Loco) => (
   <InnerMap
+    loadingElement={<div />}
     containerElement={<div />}
+    location={loco.location}
+    googleMapURL={googleMapURL}
     mapElement={<div className="map" />}
-    location={location}
-    marker={{ position: location }}
   />
 );
-Map.propTypes = {
-  location: PropTypes.objectOf(PropTypes.number).isRequired,
-};
+
 export default Map;

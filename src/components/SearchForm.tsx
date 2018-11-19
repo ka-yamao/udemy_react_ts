@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 
 interface SearchFormProps {
   onSubmit: (e: React.FormEvent) => void;
@@ -18,10 +17,5 @@ const SearchForm = (props: SearchFormProps) => (
     <input className="submit-button" type="submit" value="検索" />
   </form>
 );
-SearchForm.propTypes = {
-  place: PropTypes.string.isRequired,
-  onPlaceChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export default SearchForm;

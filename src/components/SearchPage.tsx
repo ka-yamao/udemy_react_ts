@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import * as _ from 'lodash';
 import * as queryString from 'query-string';
 
@@ -50,6 +49,7 @@ class SearchPage extends React.Component<Props, State> {
 
   componentDidMount() {
     const place = this.getPlaceParam();
+
     if (place) {
       this.startSearch();
     }
@@ -98,7 +98,8 @@ class SearchPage extends React.Component<Props, State> {
               address,
               location,
             });
-            return searchHotelByLocation(location);
+
+            return searchHotelByLocation({ location });
           }
           case 'ZERO_RESULT': {
             this.setErrorMessage('結果が見つかりませんでした。');

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import * as SearchPage from './SearchPage';
+import SearchPage from './SearchPage';
 import { AboutPage } from './AboutPage';
 
 const App = () => (

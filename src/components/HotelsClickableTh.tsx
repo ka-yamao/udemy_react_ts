@@ -1,18 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-const HotelsClickableTh = ({ lable, sortKey, isSelected, onSort }) => (
+type Props = {
+  lable: string;
+  sortKey: string;
+  isSelected: boolean;
+  onSort: Function;
+};
+
+const HotelsClickableTh: React.SFC<Props> = ({
+  lable,
+  sortKey,
+  isSelected,
+  onSort,
+}) => (
   <th className="hotel-clickable-th" onClick={() => onSort(sortKey)}>
     {lable}
     {isSelected ? '▲' : ''}
   </th>
 );
-
-HotelsClickableTh.propTypes = {
-  lable: PropTypes.string.isRequired,
-  sortKey: PropTypes.string.isRequired,
-  isSelected: PropTypes.bool.isRequired,
-  onSort: PropTypes.func.isRequired,
-};
 
 export default HotelsClickableTh;
