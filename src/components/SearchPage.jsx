@@ -20,7 +20,6 @@ class SearchPage extends React.Component {
   }
 
   // componentDidMount() {}
-
   // componentWillUnmount() {}
 
   getPlaceParam() {
@@ -100,7 +99,7 @@ SearchPage.propTypes = {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
+  //console.log(state);
   return {
     geocodeResult: state.geocodeResult,
   };

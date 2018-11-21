@@ -12,16 +12,12 @@ const place = (state = '東京タワー', action) => {
 const geocodeResult = (
   state = {
     address: '',
-    location: {
-      lat: 35.6585805,
-      lng: 139.7454329,
-    },
+    location: { lat: 35.6585805, lng: 139.7454329 },
   },
   action
 ) => {
   switch (action.type) {
     case 'GEOCODE_FETCHED':
-      // console.log(action.address);
       return {
         address: action.address,
         location: action.location,
