@@ -19,9 +19,9 @@ class SearchPage extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  // componentDidMount() {}
 
-  componentWillUnmount() {}
+  // componentWillUnmount() {}
 
   getPlaceParam() {
     const params = queryString.parse(this.props.location.search);
@@ -42,9 +42,9 @@ class SearchPage extends React.Component {
     });
   }
 
-  handleNameChange(name) {
-    this.setState({ name });
-  }
+  // handleNameChange(name) {
+  //   this.setState({ name });
+  // }
 
   // handlePlaceSubmit(e) {
   //   e.preventDefault();
@@ -59,6 +59,8 @@ class SearchPage extends React.Component {
   }
 
   render() {
+    console.log(this.props.geocodeResult);
+
     return (
       <div className="search-page">
         <h1 className="app-title">ホテル検索</h1>
@@ -97,8 +99,11 @@ SearchPage.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
-  geocodeResult: state.geocodeResult,
-});
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    geocodeResult: state.geocodeResult,
+  };
+};
 
 export default connect(mapStateToProps)(SearchPage);
