@@ -15,11 +15,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <SearchPage
-      history={history}
-      location={location}
-      store={createStore(reducer)}
-    />
+    <SearchPage location={location} />
   </Provider>,
   document.querySelector('.container')
 );
