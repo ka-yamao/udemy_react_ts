@@ -5,34 +5,36 @@
   - https://www.udemy.com/react-redux-from-beginning/
 
 - 完成ソース
-
   - https://github.com/muratayusuke/udemy_react
 
 React のラーニングでお世話になった動画です。学習で作成したソースコードをメモしました。
 
-### 地図の表示について
 
-- section3-22 あたりから地図を使います。index.html の Google マップ API のパラメータ`key`のところへ GoogleAPI キーを設定する。
-
-  - `<script src="https://maps.googleapis.com/maps/api/js?key=取得したAPIキー設定する"></script>`
-
+### 初めに
+- section3-22 からGoogleマップを使います。GoogleAPI キーが必要となります。
 - GoogleAPI キーの取得方法は以下が参考になるかと思います。
-
   - https://maps.multisoup.co.jp/blog/2967/
+
+- section3-29 から楽天トラベルのAPIを使います。あらかじめ、APIキーを取得しておきます。
+  - https://webservice.rakuten.co.jp/app/create
+  - https://webservice.rakuten.co.jp/api/simplehotelsearch/
 
 ### API キーについて
 
-section3-26 から.env ファイルの値を使ってます。udemy の動画では使用してませんが、API キーなどを使うところがあるので、認証情報`.env`ファイルで設定して 基本的には github にはアップしてません。
+- 勉強したソースコードをGithubで公開してますが、APIキーのべた書きはよくないので、このリポジトリでは「.env」ファイルに設定しました。動画での設定方法と少しことなります。
 
 - env ファイルを作成
   `cp .env.sample .env`
-
 ```
 GOOGLE_MAP_API_KEY=Google の API キーを設定
 RAKUTEN_APP_ID=楽天の API ID を設定
 ```
 
-- ただ index.html には API キーはべた書きしてる。
+- `dotenv`のパッケージで`.env`の内容を読み込んで使ってます。
+
+
+### ブランチ
+- 動画の各セクション、ユニットごとでブランチを切ってます。
 
 ### React Router ドキュメント
 
