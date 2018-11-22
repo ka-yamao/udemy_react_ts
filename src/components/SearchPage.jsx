@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-
 import SearchForm from '../containers/SearchForm';
 import GeocodeResult from './GeocodeResult';
 import Map from './Map';
@@ -21,6 +20,11 @@ class SearchPage extends React.Component {
     return null;
   }
 
+  // handlePlaceSubmit(e) {
+  //   e.preventDefault();
+  //   this.props.history.push(`/?place=${this.state.place}`);
+  //   this.startSearch();
+  // }
 
   render() {
     return (
