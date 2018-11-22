@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import queryString from 'query-string';
 
 import SearchForm from '../containers/SearchForm';
@@ -9,18 +8,9 @@ import GeocodeResult from './GeocodeResult';
 import Map from './Map';
 import HotelsTable from './HotelsTable';
 
-const sortedHotels = (hotels, sort) => _.sortBy(hotels, h => h[sort]);
+
 
 class SearchPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sortKey: 'price',
-    };
-  }
-
-  // componentDidMount() {}
-  // componentWillUnmount() {}
 
   getPlaceParam() {
     const params = queryString.parse(this.props.location.search);
@@ -31,31 +21,6 @@ class SearchPage extends React.Component {
     return null;
   }
 
-  setErrorMessage(message) {
-    this.setState({
-      address: message,
-      location: {
-        lat: 0,
-        lng: 0,
-      },
-    });
-  }
-
-  // handleNameChange(name) {
-  //   this.setState({ name });
-  // }
-
-  // handlePlaceSubmit(e) {
-  //   e.preventDefault();
-  //   this.props.history.push(`/?place=${this.state.place}`);
-  //   this.startSearch();
-  // }
-  handleSortKeyChange(sortKey) {
-    this.setState({
-      sortKey,
-      hotels: sortedHotels(this.state.hotels, sortKey),
-    });
-  }
 
   render() {
     return (

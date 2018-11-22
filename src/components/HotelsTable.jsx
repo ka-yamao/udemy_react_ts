@@ -1,26 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import HotelRow from './HotelRow';
 import HotelsClickableTh from './HotelsClickableTh';
 
-const HotelsTable = ({ hotels, sortKey, onSort }) => (
+const HotelsTable = ({ hotels }) => (
   <table>
     <tbody>
       <tr>
         <th>画像</th>
         <th>ホテル名</th>
         <HotelsClickableTh
-          lable="値段"
+          label="値段"
           sortKey="price"
-          isSelected={sortKey === 'price'}
-          onSort={key => onSort(key)}
         />
         <HotelsClickableTh
-          lable="レビュー"
+          label="レビュー"
           sortKey="reviewAverage"
-          isSelected={sortKey === 'reviewAverage'}
-          onSort={key => onSort(key)}
         />
         <th>レビュー件数</th>
         <th>距離</th>
@@ -40,9 +37,10 @@ HotelsTable.defaultProps = {
   hotels: [],
 };
 
+const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
+
 export default connect(
   state => ({
-    hotels: state.hotels,
+    hotels: sortedHotels(state.hotels, state.sortKey),
   }),
-  {}
 )(HotelsTable);
