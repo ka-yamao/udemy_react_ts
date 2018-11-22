@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HotelRow from './HotelRow';
 import HotelsClickableTh from './HotelsClickableTh';
@@ -33,12 +34,15 @@ const HotelsTable = ({ hotels, sortKey, onSort }) => (
 
 HotelsTable.propTypes = {
   hotels: PropTypes.arrayOf(PropTypes.any),
-  sortKey: PropTypes.string.isRequired,
-  onSort: PropTypes.func.isRequired,
 };
 
 HotelsTable.defaultProps = {
   hotels: [],
 };
 
-export default HotelsTable;
+export default connect(
+  state => ({
+    hotels: state.hotels,
+  }),
+  {}
+)(HotelsTable);
