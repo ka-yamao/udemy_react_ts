@@ -3,3 +3,4 @@ public/bundle.js
 .env
 .env_dev
 .env_prod
+.history
