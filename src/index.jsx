@@ -6,14 +6,13 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import App from './components/App';
-import SearchPage from './components/SearchPage';
 import reducer from './reducers/';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
-    <SearchPage location={location} />
+    <App />
   </Provider>,
   document.querySelector('.container')
 );

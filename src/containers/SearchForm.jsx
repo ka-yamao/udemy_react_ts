@@ -9,6 +9,7 @@ const SearchForm = props => (
     className="search-form"
     onSubmit={e => {
       e.preventDefault();
+      props.history.push(`/?place=${props.place}`);
       props.startSearch();
     }}
   >
@@ -29,6 +30,7 @@ SearchForm.propTypes = {
   place: PropTypes.string.isRequired,
   setPlace: PropTypes.func.isRequired,
   startSearch: PropTypes.func.isRequired,
+  history: PropTypes.shape({ push: PropTypes.func }).isRequired,
 };
 
 export default connect(
