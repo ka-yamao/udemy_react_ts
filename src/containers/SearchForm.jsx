@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 // import { searchHotelByLocation } from '../domain/HotelRepository';
-
 import { setPlace, startSearch } from '../actions';
 
 const SearchForm = props => (
@@ -30,6 +28,7 @@ const SearchForm = props => (
 SearchForm.propTypes = {
   place: PropTypes.string.isRequired,
   setPlace: PropTypes.func.isRequired,
+  startSearch: PropTypes.func.isRequired,
 };
 
 export default connect(

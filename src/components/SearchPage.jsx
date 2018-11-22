@@ -58,8 +58,6 @@ class SearchPage extends React.Component {
   }
 
   render() {
-    console.log(this.props.geocodeResult);
-
     return (
       <div className="search-page">
         <h1 className="app-title">ホテル検索</h1>
