@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { searchHotelByLocation } from '../domain/HotelRepository';
 import { setPlace, startSearch } from '../actions';
 
 const SearchForm = props => (

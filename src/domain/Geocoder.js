@@ -14,12 +14,10 @@ export const geocode = place =>
       const data = results.data;
       const status = data.status;
       const result = data.results[0];
-
       // 結果がない場合はステータスだけ返す
       if (typeof result === 'undefined') {
         return { status };
       }
-
       const address = result.formatted_address;
       const location = result.geometry.location;
 
