@@ -5,7 +5,7 @@ const publidDir = path.join(__dirname, '/public');
 
 module.exports = [
   {
-    entry: ['./src/index.jsx'],
+    entry: ['./src/index.tsx'],
     output: {
       path: publidDir,
       publicPath: '/',
@@ -16,7 +16,7 @@ module.exports = [
       rules: [
         {
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: 'awesome-typescript-loader',
           query: {
             presets: ['react', 'es2015'],
           },
@@ -24,7 +24,7 @@ module.exports = [
       ],
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.ts', '.tsx', '.js', '.json'],
     },
     devServer: {
       historyApiFallback: true,
