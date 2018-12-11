@@ -1,24 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from 'react-google-maps';
 
-const InnerMap = withGoogleMap(props => (
-  <GoogleMap
-    defaultZoom={12}
-    defaultCenter={props.positio}
-    center={props.position}
-  >
-    <Marker {...props.marker} />
-  </GoogleMap>
-));
+export const googleMapURL =
+  'https://maps.googleapis.com/maps/api/js?key=' +
+  process.env.GOOGLE_MAP_API_KEY;
+
+const InnerMap = withScriptjs(
+  withGoogleMap(props => (
+    <GoogleMap
+      defaultZoom={12}
+      defaultCenter={props.positio}
+      center={props.position}
+    >
+      <Marker {...props.marker} />
+    </GoogleMap>
+  ))
+);
 
 const Map = ({ lat, lng }) => {
   const position = { lat, lng };
   return (
     <InnerMap
+      loadingElement={<div />}
       containerElement={<div />}
       mapElement={<div className="map" />}
       position={position}
+      googleMapURL={googleMapURL}
       marker={{ position }}
     />
   );
