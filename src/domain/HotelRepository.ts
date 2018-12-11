@@ -12,19 +12,16 @@ type paramType = {
 };
 
 type Props = {
-  location: {
-    lat: number;
-    lng: number;
-  };
+  lat: number;
+  lng: number;
 };
 
 export const searchHotelByLocation = (props: Props) => {
-  console.log(props);
   const params: paramType = {
     applicationId: RAKUTEN_APP_ID,
     datumType: 1,
-    latitude: props.location.lat,
-    longitude: props.location.lng,
+    latitude: props.lat,
+    longitude: props.lng,
   };
 
   return Rakuten.default.Travel.default
@@ -35,8 +32,8 @@ export const searchHotelByLocation = (props: Props) => {
           const basicInfo = hotel.hotel[0].hotelBasicInfo;
           const distance = geolib.getDistance(
             {
-              latitude: props.location.lat,
-              longitude: props.location.lng,
+              latitude: props.lat,
+              longitude: props.lng,
             },
             {
               latitude: basicInfo.latitude,

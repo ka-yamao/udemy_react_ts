@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { setPlace, startSearch } from '../actions';
+import { History } from 'history';
 
 interface SearchFormProps {
   onSubmit: (e: React.FormEvent) => void;
 
   place: string;
-  history: any;
-  startSearch: any;
-  setPlace: any;
+  history: History;
+  startSearch: Function;
+  setPlace: Function;
 }
 
 const SearchForm = (props: any) => (
@@ -34,7 +35,7 @@ const SearchForm = (props: any) => (
 );
 
 export default connect(
-  (state: any) => ({
+  (state: SearchFormProps) => ({
     place: state.place,
   }),
   { setPlace, startSearch }

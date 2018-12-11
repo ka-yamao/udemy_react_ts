@@ -26,8 +26,8 @@ const HotelsTable: React.SFC<Props> = ({ hotels }) => (
       <tr>
         <th>画像</th>
         <th>ホテル名</th>
-        <HotelsClickableTh label="値段" sortKey="price" />
-        <HotelsClickableTh label="レビュー" sortKey="reviewAverage" />
+        <HotelsClickableTh lable="値段" sortKey="price" />
+        <HotelsClickableTh lable="レビュー" sortKey="reviewAverage" />
         <th>レビュー件数</th>
         <th>距離</th>
       </tr>

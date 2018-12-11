@@ -12,7 +12,6 @@ class SearchPage extends React.Component<any> {
   componentDidMount() {
     this.props.dispatch(startSearch());
   }
-
   render() {
     return (
       <div className="search-page">

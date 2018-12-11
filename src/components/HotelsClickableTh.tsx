@@ -1,20 +1,29 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { setSortKey } from '../actions/';
 
-type Props = {
+type ThProps = {
   lable: string;
   sortKey: string;
   isSelected: boolean;
-  onSort: Function;
+  setSortKey: Function;
 };
 
-const HotelsClickableTh: React.SFC<any> = prpps => (
+const HotelsClickableTh: React.SFC<ThProps> = prpps => (
   <th
     className="hotel-clickable-th"
-    onClick={() => prpps.onSort(prpps.sortKey)}
+    onClick={() => prpps.setSortKey(prpps.sortKey)}
   >
     {prpps.lable}
     {prpps.isSelected ? '▲' : ''}
   </th>
 );
 
-export default HotelsClickableTh;
+export default connect(
+  (state: any, ownProps: any) => ({
+    isSelected: ownProps.sortKey === state.sortKey,
+  }),
+  {
+    setSortKey,
+  }
+)(HotelsClickableTh);
