@@ -1,7 +1,6 @@
-const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const Dotenv = require('dotenv-webpack');
 const publidDir = path.join(__dirname, '/public');
 
 module.exports = [
@@ -31,6 +30,7 @@ module.exports = [
       historyApiFallback: true,
       contentBase: publidDir,
     },
+    plugins: [new Dotenv()],
   },
   {
     entry: {
@@ -60,9 +60,6 @@ module.exports = [
         },
       ],
     },
-    plugins: [
-      new webpack.DefinePlugin({}),
-      new ExtractTextPlugin('bundle.css'),
-    ],
+    plugins: [new ExtractTextPlugin('bundle.css')],
   },
 ];
