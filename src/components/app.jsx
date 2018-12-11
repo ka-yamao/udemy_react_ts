@@ -27,7 +27,7 @@ class App extends React.Component {
       .get(GEOCODE_ENDPOINT, {
         params: {
           address: place,
-          key: 'APIキーを取得して設定する',
+          key: process.env.GOOGLE_MAP_API_KEY,
         },
       })
       .then(results => {
