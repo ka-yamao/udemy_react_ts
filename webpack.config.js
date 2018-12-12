@@ -1,14 +1,15 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const Dotenv = require('dotenv-webpack');
 const publidDir = path.join(__dirname, '/public');
+
 module.exports = [
   {
     entry: ['./src/index.jsx'],
     output: {
       path: publidDir,
       publicPath: '/',
-      filename: 'bundle.js'
+      filename: 'bundle.js',
     },
     module: {
       // lodersからrulesに変更（webpack4対応）
@@ -17,27 +18,28 @@ module.exports = [
           exclude: /node_modules/,
           loader: 'babel-loader',
           query: {
-            presets: ['react', 'es2015']
-          }
-        }
-      ]
+            presets: ['react', 'es2015'],
+          },
+        },
+      ],
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
     },
     devServer: {
       historyApiFallback: true,
-      contentBase: publidDir
-    }
+      contentBase: publidDir,
+    },
+    plugins: [new Dotenv()],
   },
   {
     entry: {
-      style: './stylesheets/index.scss'
+      style: './stylesheets/index.scss',
     },
     output: {
       path: publidDir,
       publicPath: '/',
-      filename: 'bundle.css'
+      filename: 'bundle.css',
     },
     module: {
       // lodersからrulesに変更（webpack4対応）
@@ -46,18 +48,18 @@ module.exports = [
           test: /\.css$/,
           loader: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: 'css-loader'
-          })
+            use: 'css-loader',
+          }),
         },
         {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: 'css-loader!sass-loader'
-          })
-        }
-      ]
+            use: 'css-loader!sass-loader',
+          }),
+        },
+      ],
     },
-    plugins: [new ExtractTextPlugin('bundle.css')]
-  }
+    plugins: [new ExtractTextPlugin('bundle.css')],
+  },
 ];
