@@ -21,7 +21,7 @@
     "geolib": "^2.0.24",
     "import-glob-loader": "^1.1.0",
     "lodash": "^4.17.11",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.13.1",
     "path": "^0.12.7",
     "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
